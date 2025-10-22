@@ -20,3 +20,13 @@ Feature:  As a shopper, Im trying to Buy product from catalog where the product 
     And I click login button
     Then I should be redirected to the Shipping page
 
+    When I fill in shipping form with:
+      | FullName       | Celine Rolinda  |
+      | Address Line 1 | Jl Jakarta Raya |
+      | Address Line 2 | Duren Sawit     |
+      | City           | Jakarta Selatan |
+      | State/Region   | DKI Jakarta     |
+      | Zip Code       | 13850           |
+      | Country        | Indonesia       |
+    And I click on to payment button
+    Then I should be redirected to the Payment page

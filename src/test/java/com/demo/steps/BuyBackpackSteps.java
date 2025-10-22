@@ -3,15 +3,25 @@ package com.demo.steps;
 import com.demo.pages.*;
 import io.appium.java_client.AppiumBy;
 import io.cucumber.java.en.*;
+
+import java.util.Map;
+
 import static com.demo.steps.Hooks.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BuyBackpackSteps {
 
-    private ProductsPage products() { return new ProductsPage(driver); }
-    private ProductDetailPage pdp() { return new ProductDetailPage(driver); }
-    private CartPage cart() { return new CartPage(driver); }
-    private CheckoutPage checkout() { return new CheckoutPage(driver); }
+    private ProductsPage products() {
+        return new ProductsPage(driver); }
+    private ProductDetailPage pdp() {
+        return new ProductDetailPage(driver); }
+    private CartPage cart() {
+        return new CartPage(driver); }
+    private CheckoutPage checkout() {
+        return new CheckoutPage(driver); }
+    private ShippingPage shipping() {
+        return new ShippingPage(driver);
+    }
 
     @Given("the app is launched and I am on the product catalog page")
     public void onCatalog() {
@@ -101,7 +111,32 @@ public class BuyBackpackSteps {
         assertThat(isDisplayed).isTrue();
     }
 
+    @When("I fill in shipping form with:")
+    public void fillShippingForm(Map<String, String> form) {
+        shipping().fillForm(
+                form.get("FullName"),
+                form.get("Address Line 1"),
+                form.get("Address Line 2"),
+                form.get("City"),
+                form.get("State/Region"),
+                form.get("Zip Code"),
+                form.get("Country")
+        );
+    }
 
+    @And("I click on to payment button")
+    public void clickOnToPaymentButton() {
+        shipping().clickToPaymentButton();
+    }
+
+    @Then("I should be redirected to the Payment page")
+    public void verifyRedirectToPaymentPage() {
+        boolean isDisplayed = driver.findElement(
+                AppiumBy.id("com.saucelabs.mydemoapp.android:id/cardNumberET")
+        ).isDisplayed();
+
+        assertThat(isDisplayed).isTrue();
+    }
 
 
 }
