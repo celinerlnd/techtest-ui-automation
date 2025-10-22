@@ -81,5 +81,27 @@ public class BuyBackpackSteps {
         assertThat(isDisplayed).isTrue();
     }
 
+    @And("I fill the login form with username {string} and password {string}")
+    public void fillLoginForm(String username, String password) {
+        driver.findElement(AppiumBy.id("com.saucelabs.mydemoapp.android:id/nameET")).sendKeys(username);
+        driver.findElement(AppiumBy.id("com.saucelabs.mydemoapp.android:id/passwordET")).sendKeys(password);
+    }
+
+    @And("I click login button")
+    public void clickLoginButton() {
+        driver.findElement(AppiumBy.id("com.saucelabs.mydemoapp.android:id/loginBtn")).click();
+    }
+
+    @Then("I should be redirected to the Shipping page")
+    public void verifyRedirectToShippingPage() {
+        boolean isDisplayed = driver.findElement(
+                AppiumBy.id("com.saucelabs.mydemoapp.android:id/fullNameET")
+        ).isDisplayed();
+
+        assertThat(isDisplayed).isTrue();
+    }
+
+
+
 
 }

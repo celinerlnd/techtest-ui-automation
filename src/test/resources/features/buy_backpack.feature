@@ -16,5 +16,7 @@ Feature:  As a shopper, Im trying to Buy product from catalog where the product 
 
     When I tap the proceed to checkout button
     And I should be redirected to the Login page
-    And I fill the login form with username "un" and password "pass"
+    And I fill the login form with username "bod@example.com" and password "10203040"
     And I click login button
+    Then I should be redirected to the Shipping page
+
