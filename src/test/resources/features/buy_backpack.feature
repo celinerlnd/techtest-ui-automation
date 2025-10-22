@@ -30,3 +30,11 @@ Feature:  As a shopper, Im trying to Buy product from catalog where the product 
       | Country        | Indonesia       |
     And I click on to payment button
     Then I should be redirected to the Payment page
+
+    When I fill in payment methond form
+      | FullName       | Celine Rolinda  |
+      | Card Number    | 390218401343242 |
+      | Expiration Date| 03/25           |
+      | Security Code  | 1349            |
+    And I click on Review Order button
+    Then I should be redirected to the Checkout Review your order page
