@@ -137,6 +137,32 @@ public class BuyBackpackSteps {
 
         assertThat(isDisplayed).isTrue();
     }
+    @When("I fill in payment method form")
+    public void fillPaymentForm(io.cucumber.datatable.DataTable table) {
+        var m = table.asMap(String.class, String.class);
+        payment().fillForm(
+                m.get("FullName"),
+                m.get("Card Number"),
+                m.get("Expiration Date"),
+                m.get("Security Code")
+        );
+    }
+
+    @And("I click on Review Order button")
+    public void clickReviewOrder() {
+        payment().clickReviewOrder();
+    }
+
+    @Then("I should be redirected to the Checkout Review your order page")
+    public void verifyOnReviewOrderPage() {
+        // Simple check: cari teks "Review" di halaman review
+        String src = driver.getPageSource().toLowerCase();
+        org.assertj.core.api.Assertions.assertThat(src)
+                .contains("review").contains("order");
+    }
+
+    // helper
+    private com.demo.pages.PaymentPage payment() { return new com.demo.pages.PaymentPage(driver); }
 
 
 }

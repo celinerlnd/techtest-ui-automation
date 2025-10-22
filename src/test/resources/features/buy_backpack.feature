@@ -31,7 +31,7 @@ Feature:  As a shopper, Im trying to Buy product from catalog where the product 
     And I click on to payment button
     Then I should be redirected to the Payment page
 
-    When I fill in payment methond form
+    When I fill in payment method form
       | FullName       | Celine Rolinda  |
       | Card Number    | 390218401343242 |
       | Expiration Date| 03/25           |
