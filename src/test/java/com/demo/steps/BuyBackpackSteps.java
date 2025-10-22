@@ -1,6 +1,7 @@
 package com.demo.steps;
 
 import com.demo.pages.*;
+import io.appium.java_client.AppiumBy;
 import io.cucumber.java.en.*;
 import static com.demo.steps.Hooks.driver;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -64,6 +65,20 @@ public class BuyBackpackSteps {
         org.assertj.core.api.Assertions.assertThat(actualQty)
                 .as("Quantity in cart should match expected value")
                 .isEqualTo(expectedQty);
+    }
+
+    @When("I tap the proceed to checkout button")
+    public void tapProceedToCheckoutButton() {
+        cart().tapProceedToCheckout();
+    }
+
+    @Then("I should be redirected to the Login page")
+    public void verifyRedirectToLoginPage() {
+        boolean isDisplayed = driver.findElement(
+                AppiumBy.id("com.saucelabs.mydemoapp.android:id/usernameTV")
+        ).isDisplayed();
+
+        assertThat(isDisplayed).isTrue();
     }
 
 

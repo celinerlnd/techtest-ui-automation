@@ -13,3 +13,8 @@ Feature:  As a shopper, Im trying to Buy product from catalog where the product 
 
     When I tap the cart icon
     Then I should see "Sauce Lab Back Packs" with quantity 2 in the cart
+
+    When I tap the proceed to checkout button
+    And I should be redirected to the Login page
+    And I fill the login form with username "un" and password "pass"
+    And I click login button

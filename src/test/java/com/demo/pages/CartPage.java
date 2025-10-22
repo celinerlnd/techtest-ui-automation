@@ -26,14 +26,8 @@ public class CartPage {
         }
     }
 
-    public void proceedToCheckout(){
-        driver.findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().textMatches(\"(?i)checkout|proceed\")")).click();
+    public void tapProceedToCheckout() {
+        driver.findElement(AppiumBy.id("com.saucelabs.mydemoapp.android:id/cartBt")).click();
     }
 
-    public void assertBlueColorVisible(){
-        // Verifikasi ada teks 'Blue'
-        String details = driver.getPageSource();
-        Assertions.assertThat(details.toLowerCase()).contains("blue");
-    }
 }
