@@ -38,3 +38,8 @@ Feature:  As a shopper, Im trying to Buy product from catalog where the product 
       | Security Code  | 1349            |
     And I click on Review Order button
     Then I should be redirected to the Checkout Review your order page
+
+    When I click on place order button
+    Then I should be redirected to the Checkout Complete page
+    And I click on continue shopping button
+    Then I should be redirected to the product catalog page

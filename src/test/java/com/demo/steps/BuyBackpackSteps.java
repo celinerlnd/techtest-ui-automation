@@ -17,10 +17,11 @@ public class BuyBackpackSteps {
         return new ProductDetailPage(driver); }
     private CartPage cart() {
         return new CartPage(driver); }
-    private CheckoutPage checkout() {
-        return new CheckoutPage(driver); }
     private ShippingPage shipping() {
         return new ShippingPage(driver);
+    }
+    private CheckoutReviewPage payment() {
+        return new CheckoutReviewPage(driver);
     }
 
     @Given("the app is launched and I am on the product catalog page")
@@ -161,8 +162,35 @@ public class BuyBackpackSteps {
                 .contains("review").contains("order");
     }
 
-    // helper
-    private com.demo.pages.PaymentPage payment() { return new com.demo.pages.PaymentPage(driver); }
+    @When("I click on place order button")
+    public void clickPlaceOrderButton() {
+        payment().clickPlaceOrder();
+    }
 
+    @Then("I should be redirected to the Checkout Complete page")
+    public void verifyRedirectToCheckoutCompletePage() {
+        boolean isDisplayed = driver.findElement(
+                AppiumBy.id("com.saucelabs.mydemoapp.android:id/thankYouTV")
+        ).isDisplayed();
+
+        assertThat(isDisplayed).isTrue();
+    }
+
+    @And("I click on continue shopping button")
+    public void clickContinueShoppingButton() {
+        driver.findElement(
+                AppiumBy.id("com.saucelabs.mydemoapp.android:id/shoopingBt")
+        ).click();
+    }
+
+    @Then("I should be redirected to the product catalog page")
+    public void verifyRedirectToProductCatalogPage() {
+        // verifikasi katalog dengan mencari salah satu title produk (id: titleTV)
+        boolean anyProductTitleVisible = driver.findElement(
+                AppiumBy.id("com.saucelabs.mydemoapp.android:id/titleTV")
+        ).isDisplayed();
+
+        assertThat(anyProductTitleVisible).isTrue();
+    }
 
 }

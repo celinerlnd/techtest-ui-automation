@@ -4,9 +4,9 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 
-public class PaymentPage {
+public class CheckoutReviewPage {
     private final AndroidDriver driver;
-    public PaymentPage(AndroidDriver driver){ this.driver = driver; }
+    public CheckoutReviewPage(AndroidDriver driver){ this.driver = driver; }
 
     public void fillForm(String fullName, String cardNumber, String exp, String cvv) {
         typeWithScroll("com.saucelabs.mydemoapp.android:id/nameET", fullName);
@@ -37,4 +37,9 @@ public class PaymentPage {
             ));
         } catch (Exception ignored) {}
     }
+    public void clickPlaceOrder() {
+        scrollIntoViewById("com.saucelabs.mydemoapp.android:id/paymentBtn");
+        driver.findElement(AppiumBy.id("com.saucelabs.mydemoapp.android:id/paymentBtn")).click();
+    }
+
 }
