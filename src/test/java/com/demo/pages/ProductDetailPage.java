@@ -65,4 +65,9 @@ public class ProductDetailPage {
         }
     }
 
+    public void tapCartIcon() {
+        // pakai ID (lebih stabil daripada xpath)
+        driver.findElement(AppiumBy.id("com.saucelabs.mydemoapp.android:id/cartRL")).click();
+    }
+
 }

@@ -52,4 +52,19 @@ public class BuyBackpackSteps {
         // cart().proceedToCheckout();
         // checkout().assertOnCheckout();
     }
+
+    @When("I tap the cart icon")
+    public void tapCartIcon() {
+        pdp().tapCartIcon(); // panggil method dari ProductDetailPage
+    }
+
+    @Then("I should see {string} with quantity {int} in the cart")
+    public void assertItemInCart(String productName, int expectedQty) {
+        int actualQty = cart().getItemCountFor(productName);
+        org.assertj.core.api.Assertions.assertThat(actualQty)
+                .as("Quantity in cart should match expected value")
+                .isEqualTo(expectedQty);
+    }
+
+
 }
