@@ -10,3 +10,8 @@ Feature:  As a shopper, Im trying to Buy product from catalog where the product 
     And I set quantity to 2
     And I add it to the cart
     Then I should see icon cart has 2 count item
+
+#  Scenario: View cart details after adding 2 items
+#    When I open the product "Sauce Lab Back Packs"
+#    And I tap the cart icon
+#    Then I should see "Sauce Lab Back Packs" with quantity 2 in the cart
