@@ -8,6 +8,5 @@ Feature:  As a shopper, Im trying to Buy product from catalog where the product 
     When I open the product "Sauce Lab Back Packs"
     And I choose color "Blue"
     And I set quantity to 2
-    And I add it to the cart button by clicking "Add to Cart"
-#    Then I should see the color "Blue" in the cart
-#    And the quantity should be 2
+    And I add it to the cart
+    Then I should see icon cart has 2 count item

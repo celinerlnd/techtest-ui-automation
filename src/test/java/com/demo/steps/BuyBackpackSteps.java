@@ -34,16 +34,14 @@ public class BuyBackpackSteps {
         pdp().setQuantity(qty);
     }
 
-    @And("I add it to the cart and open the cart")
-    public void addToCartAndOpenCart() {
+    @And("I add it to the cart")
+    public void addToCart() {
         pdp().addToCart();
-        pdp().goToCart();
     }
 
-    @Then("I should see the color {string} in the cart")
-    public void verifyColorInCart(String color) {
-        cart().assertBlueColorVisible(); // simple check via page source contains 'Blue'
-        // jika mau lebih ketat, tambahkan method assertColor(String) di CartPage.
+    @Then("I should see icon cart has {int} count item")
+    public void verifyCartCount(int expectedCount) {
+        pdp().assertCartItemCount(expectedCount);
     }
 
     @And("the quantity should be {int}")

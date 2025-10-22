@@ -36,19 +36,33 @@ public class ProductDetailPage {
     }
 
 
-    public void addToCart(){
-        WebElement add = driver.findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().textContains(\"Add to cart\").className(\"android.widget.Button\")"));
-        add.click();
+    public void addToCart() {
+        // Scroll ke button (kalau butuh)
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().resourceId(\"com.saucelabs.mydemoapp.android:id/cartBt\"))"
+        ));
+
+        // Klik tombol Add to Cart
+        WebElement addButton = driver.findElement(AppiumBy.id("com.saucelabs.mydemoapp.android:id/cartBt"));
+        addButton.click();
     }
 
-    public void goToCart(){
-        // Icon cart di header atau tombol "Cart"
-        try {
-            driver.findElement(AppiumBy.accessibilityId("cart")).click();
-        } catch (Exception e) {
-            driver.findElement(AppiumBy.androidUIAutomator(
-                    "new UiSelector().descriptionContains(\"Cart\")")).click();
+    // checking cart validation count items
+    public void assertCartItemCount(int expectedCount) {
+        // Cari badge angka di icon cart
+        WebElement badge = driver.findElement(AppiumBy.id("com.saucelabs.mydemoapp.android:id/cartTV"));
+
+        // Ambil teks dan ubah ke int
+        String countText = badge.getText().trim();
+        int actualCount = Integer.parseInt(countText);
+
+        // Assertion manual
+        if (actualCount != expectedCount) {
+            throw new AssertionError(
+                    "Expected cart count " + expectedCount + " but got " + actualCount
+            );
         }
     }
+
 }
